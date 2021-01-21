@@ -48,7 +48,7 @@ export default class Length extends Component {
                             Length
                                 </div>
                     </Card>
-                    <Card id="temperature">
+                    <Card id="temperatures">
                         <div>
                             <img src={hot} />
                         </div>
@@ -56,7 +56,7 @@ export default class Length extends Component {
                             Temperature
                                 </div>
                     </Card>
-                    <Card id="volume">
+                    <Card id="volumes">
                         <div>
                             <img src={beaker} />
                         </div>

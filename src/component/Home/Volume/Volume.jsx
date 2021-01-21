@@ -40,7 +40,7 @@ export default class Volume extends Component {
                 </div>
                 <div className="cardContainer">
 
-                    <Card id="length">
+                    <Card id="lengths">
                         <div>
                             <img src={scale} />
                         </div>
@@ -48,7 +48,7 @@ export default class Volume extends Component {
                             Length
                             </div>
                     </Card>
-                    <Card id="temperature">
+                    <Card id="temperatures">
                         <div>
                             <img src={hot} />
                         </div>
