@@ -49,25 +49,23 @@ justify-content: center;
     justify-content: space-between;
     margin-top: -3px;
 }
-#card1{
+#length{
 width: 150px;
 height: 150px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-/* background: #EDFDF9 0% 0% no-repeat padding-box; */
 }
-#card2{
+#temperature{
 width: 150px;
 height: 150px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-/* background: #EDFDF9 0% 0% no-repeat padding-box; */
 }
-#card3{
+#volume{
 width: 150px;
 height: 150px;
 display: flex;
@@ -131,4 +129,5 @@ align-items: center;
     margin-bottom: 0;
     width: 15em;
     background-color: white;
+    text-align: left;
 }

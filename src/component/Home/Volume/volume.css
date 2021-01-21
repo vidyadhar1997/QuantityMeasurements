@@ -45,29 +45,26 @@ justify-content: center;
     align-items: center;
     margin: 40px;
     width: 35%;
-    /* height: 400px; */
     justify-content: space-between;
     margin-top: -3px;
 }
-#card1{
+#length{
 width: 150px;
 height: 150px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-/* background: #EDFDF9 0% 0% no-repeat padding-box; */
 }
-#card2{
+#temperature{
 width: 150px;
 height: 150px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-/* background: #EDFDF9 0% 0% no-repeat padding-box; */
 }
-#card3{
+#volume{
 width: 150px;
 height: 150px;
 display: flex;
