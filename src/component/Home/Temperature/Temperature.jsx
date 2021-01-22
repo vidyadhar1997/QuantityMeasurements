@@ -6,29 +6,42 @@ import scale from "../../../assets/scale-1.svg"
 import hot from "../../../assets/hot.svg"
 import beaker from "../../../assets/beaker1.svg"
 import { TextField, MenuItem, Select } from '@material-ui/core';
+import TemperatureConvertor from '../../../Services/temperatureConvertor';
+
+let objTemperature=new TemperatureConvertor();
+var result=0;
 
 export default class Temprature extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            temprature: '',
-            temprature1: '',
+            setFromTemperature: '',
+            setToTemperature: '',
+            setFromTemperatureText:''
         }
     }
-    handleTemperatures = (event) => {
-        let temprature = event.target.value;
+    handleChangeFroms = (event) => {
         this.setState({
-            temprature: event.target.value
+            setFromTemperature: event.target.value
         })
-        console.log("temprature", temprature)
-    }
-    handleTemperature1 = (event) => {
-        let temprature1 = event.target.value;
+        this.state.setFromTemperature=event.target.value;
+        this.result=objTemperature.Calculate(this.state.setFromTemperatureText,this.state.setFromTemperature,this.state.setToTemperature)
+    };
+    handleChangeToo = (event) => {
         this.setState({
-            temprature1: event.target.value
+            setToTemperature: event.target.value
         })
-        console.log("temprature1", temprature1)
-    }
+        this.state.setToTemperature=event.target.value;
+        this.result=objTemperature.Calculate(this.state.setFromTemperatureText,this.state.setFromTemperature,this.state.setToTemperature)
+    };
+    textChanges=(event)=>{
+        this.setState({
+            setFromTemperatureText: event.target.value
+        })
+        this.state.setFromTemperatureText=event.target.value;
+        this.result=objTemperature.Calculate(this.state.setFromTemperatureText,this.state.setFromTemperature,this.state.setToTemperature)
+    };
+
     handleLength = () => {
         this.props.history.push('/length');
     }
@@ -80,16 +93,16 @@ export default class Temprature extends Component {
                         <div id="text">
                             <br /><lable>FROM</lable><br /></div>
                         <div>
-                            <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>
+                            <TextField className="TextField" type="number" variant="outlined" size="small" onChange={this.textChanges} ></TextField>
                         </div>
                         <div>
-                            <Select id="Select" value={this.state.temprature} onChange={this.handleTemperatures}>
+                            <Select id="Select" value={this.state.setFromTemperature} onChange={this.handleChangeFroms}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Celsius</MenuItem>
-                                <MenuItem value={20}>Fahrenheit</MenuItem>
-                                <MenuItem value={30}>kelvin</MenuItem>
+                                <MenuItem value={1}>Celsius</MenuItem>
+                                <MenuItem value={33.8}>Fahrenheit</MenuItem>
+                                <MenuItem value={273.15}>kelvin</MenuItem>
                             </Select>
                         </div>
                     </div>
@@ -97,15 +110,15 @@ export default class Temprature extends Component {
                         <div id="text">
                             <br /><lable>To</lable><br /></div>
                         <div>
-                            <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>  </div>
+                            <TextField className="TextField" type="number" variant="outlined" size="small" value={this.result}></TextField>  </div>
                         <div>
-                            <Select id="Select" value={this.state.temprature1} onChange={this.handleTemperature1}>
+                            <Select id="Select" value={this.state.setToTemperature} onChange={this.handleChangeToo}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Celsius</MenuItem>
-                                <MenuItem value={20}>Fahrenheit</MenuItem>
-                                <MenuItem value={30}>kelvin</MenuItem>
+                                <MenuItem value={1}>Celsius</MenuItem>
+                                <MenuItem value={2}>Fahrenheit</MenuItem>
+                                <MenuItem value={3}>kelvin</MenuItem>
                             </Select>
                         </div>
                     </div>
