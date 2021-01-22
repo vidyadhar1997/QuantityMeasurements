@@ -29,6 +29,15 @@ export default class Volume extends Component {
         })
         console.log("volume1", volume1)
     }
+    handleLength = () => {
+        this.props.history.push('/length');
+    }
+    handleTemperature = () => {
+        this.props.history.push('/temperature');
+    }
+    handleVolume = () => {
+        this.props.history.push('/volume');
+    }
     render() {
         return (
             <div className="homeContainer">
@@ -40,7 +49,7 @@ export default class Volume extends Component {
                 </div>
                 <div className="cardContainer">
 
-                    <Card id="lengths">
+                    <Card id="lengths"onClick={this.handleLength}>
                         <div>
                             <img src={scale} />
                         </div>
@@ -48,7 +57,7 @@ export default class Volume extends Component {
                             Length
                             </div>
                     </Card>
-                    <Card id="temperatures">
+                    <Card id="temperatures"onClick={this.handleTemperature}>
                         <div>
                             <img src={hot} />
                         </div>
@@ -56,7 +65,7 @@ export default class Volume extends Component {
                             Temperature
                             </div>
                     </Card>
-                    <Card id="volume">
+                    <Card id="volume"onClick={this.handleVolume}>
                         <div>
                             <img src={beaker} />
                         </div>
