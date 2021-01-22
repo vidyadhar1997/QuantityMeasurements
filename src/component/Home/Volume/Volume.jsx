@@ -15,7 +15,7 @@ export default class Volume extends Component {
             volume1: '',
         }
     }
-    handleVolume = (event) => {
+    handleVolumes = (event) => {
         let volume = event.target.value;
         this.setState({
             volume: event.target.value
@@ -82,7 +82,7 @@ export default class Volume extends Component {
                             <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>
                         </div>
                         <div>
-                            <Select id="Select" value={this.state.volume} onChange={this.handleVolume}>
+                            <Select id="Select" value={this.state.volume} onChange={this.handleVolumes}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>

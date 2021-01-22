@@ -15,7 +15,7 @@ export default class Length extends Component {
             length1: '',
         }
     }
-    handleLength = (event) => {
+    handleLengths = (event) => {
         let length = event.target.value;
         this.setState({
             length: event.target.value
@@ -82,7 +82,7 @@ export default class Length extends Component {
                             <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>
                         </div>
                         <div>
-                            <Select id="Select" value={this.state.length} onChange={this.handleLength}>
+                            <Select id="Select" value={this.state.length} onChange={this.handleLengths}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>

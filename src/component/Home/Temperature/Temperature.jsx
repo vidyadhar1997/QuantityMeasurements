@@ -15,7 +15,7 @@ export default class Temprature extends Component {
             temprature1: '',
         }
     }
-    handleTemperature = (event) => {
+    handleTemperatures = (event) => {
         let temprature = event.target.value;
         this.setState({
             temprature: event.target.value
@@ -83,7 +83,7 @@ export default class Temprature extends Component {
                             <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>
                         </div>
                         <div>
-                            <Select id="Select" value={this.state.temprature} onChange={this.handleTemperature}>
+                            <Select id="Select" value={this.state.temprature} onChange={this.handleTemperatures}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
