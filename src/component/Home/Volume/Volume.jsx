@@ -6,6 +6,7 @@ import scale from "../../../assets/scale-1.svg"
 import hot from "../../../assets/hot-1.svg"
 import beaker from "../../../assets/beaker.svg"
 import { TextField, MenuItem, Select } from '@material-ui/core';
+//  let objVolume=new Volume();
 
 export default class Volume extends Component {
     constructor(props) {
@@ -29,6 +30,7 @@ export default class Volume extends Component {
         })
         console.log("volume1", volume1)
     }
+    //let result= objVolume.calculateMillilitres(type,from,to)
     handleLength = () => {
         this.props.history.push('/length');
     }

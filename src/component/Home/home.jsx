@@ -5,6 +5,7 @@ import { Card } from '@material-ui/core';
 import scale from '../../assets/scale-1.svg';
 import hot from "../../assets/hot-1.svg"
 import beaker from "../../assets/beaker1.svg"
+import Volume from './Volume/Volume';
 
 class Home extends Component {
     handleLength = () => {
@@ -16,6 +17,7 @@ class Home extends Component {
     handleVolume = () => {
         this.props.history.push('/volume')
     }
+
     render() {
         return (
             <div >

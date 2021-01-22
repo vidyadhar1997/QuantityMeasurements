@@ -6,29 +6,42 @@ import scale from "../../../assets/scale.svg"
 import hot from "../../../assets/hot-1.svg"
 import beaker from "../../../assets/beaker1.svg"
 import { TextField, MenuItem, Select } from '@material-ui/core';
+import LengthConvertor from '../../../Services/lengthConvertor';
+
+let objLength=new LengthConvertor();
+var result=0;
 
 export default class Length extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            length: '',
-            length1: '',
+            setFromLength: '',
+            setToLength: '',
+            setFromLengthText:''
         }
     }
-    handleLengths = (event) => {
-        let length = event.target.value;
+    handleChangeFrom = (event) => {
         this.setState({
-            length: event.target.value
+            setFromLength: event.target.value
         })
-        console.log("length", length)
-    }
-    handleLength1 = (event) => {
-        let length1 = event.target.value;
+        this.state.setFromLength=event.target.value;
+        this.result=objLength.calculate(this.state.setFromLengthText,this.state.setFromLength,this.state.setToLength)
+    };
+    handleChangeTo = (event) => {
         this.setState({
-            length1: event.target.value
+            setToLength: event.target.value
         })
-        console.log("length1", length1)
-    }
+        this.state.setToLength=event.target.value;
+        this.result=objLength.calculate(this.state.setFromLengthText,this.state.setFromLength,this.state.setToLength)
+    };
+    textChange=(event)=>{
+        this.setState({
+            setFromLengthText: event.target.value
+        })
+        this.state.setFromLengthText=event.target.value;
+        this.result=objLength.calculate(this.state.setFromLengthText,this.state.setFromLength,this.state.setToLength)
+    };
+
     handleLength = () => {
         this.props.history.push('/length');
     }
@@ -79,20 +92,21 @@ export default class Length extends Component {
                         <div id="text">
                             <br /><lable>FROM</lable><br /></div>
                         <div>
-                            <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>
+                            <TextField className="TextField" type="number" variant="outlined" size="small" onChange={this.textChange} ></TextField>
                         </div>
                         <div>
-                            <Select id="Select" value={this.state.length} onChange={this.handleLengths}>
+                            <Select id="Select" value={this.state.setFromLength} onChange={this.handleChangeFrom}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Centimeter</MenuItem>
-                                <MenuItem value={20}>Kilometer</MenuItem>
-                                <MenuItem value={30}>Millimeter</MenuItem>
-                                <MenuItem value={40}>Micrometer</MenuItem>
-                                <MenuItem value={50}>Mile</MenuItem>
-                                <MenuItem value={60}>Foot</MenuItem>
-                                <MenuItem value={70}>Inch</MenuItem>
+                                <MenuItem value={39370}>Kilometer</MenuItem>
+                                <MenuItem value={39}>Meter</MenuItem>
+                                <MenuItem value={0.393701}>Centimeter</MenuItem>
+                                <MenuItem value={0.393701}>Millimeter</MenuItem>
+                                <MenuItem value={0.0000393701}>Micrometer</MenuItem>
+                                <MenuItem value={63360}>Mile</MenuItem>
+                                <MenuItem value={12}>Foot</MenuItem>
+                                <MenuItem value={1}>Inch</MenuItem>
                             </Select>
                         </div>
                     </div>
@@ -100,19 +114,20 @@ export default class Length extends Component {
                         <div id="text">
                             <br /><lable>To</lable><br /></div>
                         <div>
-                            <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>  </div>
+                            <TextField className="TextField" type="number" variant="outlined" size="small" value={this.result} ></TextField>  </div>
                         <div>
-                            <Select id="Select" value={this.state.length1} onChange={this.handleLength1}>
+                            <Select id="Select" value={this.state.setToLength} onChange={this.handleChangeTo}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Centimeter</MenuItem>
-                                <MenuItem value={20}>kilometer</MenuItem>
-                                <MenuItem value={30}>millimeter</MenuItem>
-                                <MenuItem value={40}>micrometer</MenuItem>
-                                <MenuItem value={50}>mile</MenuItem>
-                                <MenuItem value={60}>Foot</MenuItem>
-                                <MenuItem value={70}>Inch</MenuItem>
+                                <MenuItem value={1}>Kilometer</MenuItem>
+                                <MenuItem value={2}>Meter</MenuItem>
+                                <MenuItem value={3}>Centimeter</MenuItem>
+                                <MenuItem value={4}>Millimeter</MenuItem>
+                                <MenuItem value={5}>Micrometer</MenuItem>
+                                <MenuItem value={6}>Mile</MenuItem>
+                                <MenuItem value={7}>Foot</MenuItem>
+                                <MenuItem value={8}>Inch</MenuItem>
                             </Select>
                         </div>
                     </div>
