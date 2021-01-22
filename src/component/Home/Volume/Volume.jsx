@@ -6,31 +6,41 @@ import scale from "../../../assets/scale-1.svg"
 import hot from "../../../assets/hot-1.svg"
 import beaker from "../../../assets/beaker.svg"
 import { TextField, MenuItem, Select } from '@material-ui/core';
-//  let objVolume=new Volume();
+import VolumeConvertor from '../../../Services/volumeConvertor';
+
+let objVolume=new VolumeConvertor();
+var result=0;
 
 export default class Volume extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            volume: '',
-            volume1: '',
+            setFromVolume: '',
+            setToVolume: '',
+            setFromVolumeText:''
         }
     }
-    handleVolumes = (event) => {
-        let volume = event.target.value;
+    handleChangesFrom = (event) => {
         this.setState({
-            volume: event.target.value
+            setFromVolume: event.target.value
         })
-        console.log("volume", volume)
-    }
-    handleVolume1 = (event) => {
-        let volume1 = event.target.value;
+        this.state.setFromVolume=event.target.value;
+        this.result=objVolume.Calculate(this.state.setFromVolumeText,this.state.setFromVolume,this.state.setToVolume)
+    };
+    handleChangesToo = (event) => {
         this.setState({
-            volume1: event.target.value
+            setToVolume: event.target.value
         })
-        console.log("volume1", volume1)
-    }
-    //let result= objVolume.calculateMillilitres(type,from,to)
+        this.state.setToVolume=event.target.value;
+        this.result=objVolume.Calculate(this.state.setFromVolumeText,this.state.setFromVolume,this.state.setToVolume)
+    };
+    textsChanges=(event)=>{
+        this.setState({
+            setFromVolumeText: event.target.value
+        })
+        this.state.setFromVolumeText=event.target.value;
+        this.result=objVolume.Calculate(this.state.setFromVolumeText,this.state.setFromVolume,this.state.setToVolume)
+    };
     handleLength = () => {
         this.props.history.push('/length');
     }
@@ -81,16 +91,16 @@ export default class Volume extends Component {
                         <div id="text">
                             <br /><lable>FROM</lable><br /></div>
                         <div>
-                            <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>
+                            <TextField className="TextField" type="number" variant="outlined" size="small" onChange={this.textsChanges} ></TextField>
                         </div>
                         <div>
-                            <Select id="Select" value={this.state.volume} onChange={this.handleVolumes}>
+                            <Select id="Select" value={this.state.setFromVolume} onChange={this.handleChangesFrom}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Litres</MenuItem>
-                                <MenuItem value={20}>Millilitres</MenuItem>
-                                <MenuItem value={30}>Gallons</MenuItem>
+                                <MenuItem value={1}>Litres</MenuItem>
+                                <MenuItem value={1000}>Millilitres</MenuItem>
+                                <MenuItem value={0.000264172}>Gallons</MenuItem>
                             </Select>
                         </div>
                     </div>
@@ -98,15 +108,15 @@ export default class Volume extends Component {
                         <div id="text">
                             <br /><lable>To</lable><br /></div>
                         <div>
-                            <TextField className="TextField" type="number" variant="outlined" size="small" ></TextField>  </div>
+                            <TextField className="TextField" type="number" variant="outlined" size="small" value={this.result} ></TextField>  </div>
                         <div>
-                            <Select id="Select" value={this.state.volume1} onChange={this.handleVolume1}>
+                            <Select id="Select" value={this.state.setToVolume} onChange={this.handleChangesToo}>
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Litres</MenuItem>
-                                <MenuItem value={20}>Millilitres</MenuItem>
-                                <MenuItem value={30}>Gallons</MenuItem>
+                                <MenuItem value={1}>Litres</MenuItem>
+                                <MenuItem value={2}>Millilitres</MenuItem>
+                                <MenuItem value={3}>Gallons</MenuItem>
                             </Select>
                         </div>
                     </div>
